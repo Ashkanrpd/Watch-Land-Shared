@@ -1,3 +1,4 @@
+require("dotenv").config();
 let express = require("express");
 let app = express();
 let MongoClient = require("mongodb").MongoClient;
@@ -9,10 +10,14 @@ let cookieParser = require("cookie-parser");
 let sha1 = require("sha1");
 reloadMagic(app);
 let dbo = undefined;
-let url = "";
-MongoClient.connect(url, { userNewUrlParser: true }, (err, client) => {
-  dbo = client.db("eCommerce");
-});
+let url = process.env.SERVER_PATH;
+MongoClient.connect(
+  url,
+  { userNewUrlParser: true, useUnifiedTopology: true },
+  (err, client) => {
+    dbo = client.db("eCommerce");
+  }
+);
 let sessions = {};
 
 app.use(cookieParser());
@@ -93,7 +98,6 @@ app.get("/getItems", async (req, res) => {
         res.send("fail");
         return;
       }
-      console.log("items", item);
       res.send(JSON.stringify(item));
     });
 });
@@ -104,7 +108,6 @@ app.post("/findItem", upload.none(), async (req, res) => {
   try {
     let item = await dbo.collection("items").findOne({ _id: ObjectId(id) });
     if (item) {
-      console.log("item", item);
       res.send(JSON.stringify(item));
       return;
     }
@@ -160,7 +163,7 @@ app.post("/deleteAd", upload.none(), async (req, res) => {
   res.send(JSON.stringify({ success: false }));
 });
 
-app.all("/*", (req, res, next) => {
+app.all("/*", (req, res) => {
   // needed for react router
   console.log("/*");
   res.sendFile(__dirname + "/build/index.html");
