@@ -5,7 +5,7 @@ import {
   push,
   browserHistory,
   Redirect,
-  Link
+  Link,
 } from "react-router-dom";
 import { connect } from "react-redux";
 import Store from "./Store.js";
@@ -15,16 +15,16 @@ class UnAuth extends Component {
     super(props);
     this.state = {
       usernameLoginInpit: "",
-      passwordLoginInput: ""
+      passwordLoginInput: "",
     };
   }
-  usernameLoginChange = evt => {
+  usernameLoginChange = (evt) => {
     this.setState({ usernameLoginInput: evt.target.value });
   };
-  passwordLoginChange = evt => {
+  passwordLoginChange = (evt) => {
     this.setState({ passwordLoginInput: evt.target.value });
   };
-  loginHandler = async evt => {
+  loginHandler = async (evt) => {
     evt.preventDefault();
     let data = new FormData();
     data.append("username", this.state.usernameLoginInput);
@@ -36,7 +36,7 @@ class UnAuth extends Component {
       console.log("Logged in Successfully");
       this.props.dispatch({
         type: "logged-in-username",
-        username: this.state.usernameLoginInput
+        username: this.state.usernameLoginInput,
       });
       alert("Logged in Successfully");
       return;
@@ -57,8 +57,8 @@ class UnAuth extends Component {
             type="text"
             onChange={this.usernameLoginChange}
             className={"register-input"}
-            minlength={"4"}
-            maxlength={"8"}
+            minLength={"4"}
+            maxLength={"8"}
             placeholder={"4-8 letters"}
           ></input>
           <div>Password:</div>
@@ -66,8 +66,8 @@ class UnAuth extends Component {
             type="password"
             onChange={this.passwordLoginChange}
             className={"register-input"}
-            minlength={"8"}
-            maxlength={"12"}
+            minLength={"8"}
+            maxLength={"12"}
             placeholder={"8-12 characters"}
           ></input>
           <input type="submit" className="register-button"></input>
@@ -83,7 +83,7 @@ class UnAuth extends Component {
   };
 }
 
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return { username: state.username, loggedIn: state.loggedIn };
 };
 let Auth = connect(mapStateToProps)(UnAuth);

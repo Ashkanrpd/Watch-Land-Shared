@@ -62,7 +62,7 @@ class UnConnectedPostAdv extends Component {
       <div>
         <Navbar />
         <div className="post">
-          <div classname="post-img">
+          <div className="post-img">
             {this.state.imgURL ? (
               <img src={this.state.imgURL}></img>
             ) : (

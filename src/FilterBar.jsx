@@ -8,7 +8,7 @@ import Slider from "@material-ui/core/slider";
 import Items from "./items.jsx";
 const StyledSlider = withStyles({
   root: {
-    color: "white"
+    color: "white",
   },
   valueLabel: {
     "& * ": {
@@ -18,9 +18,9 @@ const StyledSlider = withStyles({
       width: "40px",
       display: "flex",
       alignItems: "center",
-      borderRadius: "10px"
-    }
-  }
+      borderRadius: "10px",
+    },
+  },
 })(Slider);
 class UnConnectedFilterBar extends Component {
   constructor(props) {
@@ -36,11 +36,11 @@ class UnConnectedFilterBar extends Component {
           <Autocomplete
             id="combo-box-demo"
             options={this.props.brands}
-            getOptionLabel={option => option}
+            getOptionLabel={(option) => option}
             onChange={this.props.chosenBrandFunc}
             value={this.props.chosenBrand}
             style={{ background: "white", width: "200px", borderRadius: "5px" }}
-            renderInput={params => (
+            renderInput={(params) => (
               <TextField
                 {...params}
                 div="Search"
@@ -67,14 +67,14 @@ class UnConnectedFilterBar extends Component {
             type="radio"
             value="MEN"
             name="gender"
-            checked={this.props.gender === "MEN"}
+            readOnly={this.props.gender === "MEN"}
           />{" "}
           Men
           <input
             type="radio"
             value="WOMEN"
             name="gender"
-            checked={this.props.gender === "WOMEN"}
+            readOnly={this.props.gender === "WOMEN"}
           />{" "}
           Women
         </div>
@@ -112,12 +112,12 @@ class UnConnectedFilterBar extends Component {
     );
   };
 }
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return {
     items: state.items,
     username: state.username,
     loggedIn: state.loggedIn,
-    brands: state.brands
+    brands: state.brands,
   };
 };
 let FilterBar = connect(mapStateToProps)(UnConnectedFilterBar);
