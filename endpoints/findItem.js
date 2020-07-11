@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const upload = multer({ dest: "./uploads/" });
-let ObjectId = require("mongodb").ObjectId;
+const ObjectId = require("mongodb").ObjectId;
 const getDb = require("../database/db.js").getDb;
 
 router.post("/", upload.none(), async (req, res) => {

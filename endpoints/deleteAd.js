@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const upload = multer({ dest: "./uploads/" });
-const sha1 = require("sha1");
-let ObjectId = require("mongodb").ObjectId;
+const ObjectId = require("mongodb").ObjectId;
 const getDb = require("../database/db.js").getDb;
 const sessions = require("../server.js");
 
