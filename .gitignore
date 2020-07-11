@@ -23,8 +23,3 @@ package-lock.json
 yarn-lock.json
 yarn.lock
 
-webpack.config.js
-reload-magic.js
-.babelrc
-nodemon.json
-/uploads
