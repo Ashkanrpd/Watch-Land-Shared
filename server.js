@@ -42,7 +42,7 @@ app.all("/*", (req, res) => {
 // Starting the server
 const start = async () => {
   await initMongo(url).then(() => {
-    app.listen(4000, "0.0.0.0", () => {
+    app.listen(process.env.PORT || 5000, "0.0.0.0", () => {
       console.log("Server running on port 4000");
     });
   });
