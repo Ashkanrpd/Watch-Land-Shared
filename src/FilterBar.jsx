@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Slider from "@material-ui/core/slider";
+import { Slider } from "@material-ui/core";
 
 const StyledSlider = withStyles({
   root: {

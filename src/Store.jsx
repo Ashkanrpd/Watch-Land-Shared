@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Items from "./items.jsx";
+import Items from "./Items.jsx";
 import Navbar from "./Navbar.jsx";
 import FilterBar from "./FilterBar.jsx";
 
