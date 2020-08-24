@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Route, BrowserRouter } from "react-router-dom";
-import Auth from "./Auth.jsx";
+
 class UnConnectedNavbar extends Component {
   render = () => {
     return (
-      <div className="menu">
+      <div className="navbar">
         <img src="/logo.png" className="logo" />
         <Link to="/" className="nav">
           Home
@@ -14,24 +13,25 @@ class UnConnectedNavbar extends Component {
         <Link to="/Store" className="nav">
           Store
         </Link>
-        {this.props.loggedIn ? (
-          <span>
-            <Link to="/Post-ADV" className="nav">
-              Post-Adv
-            </Link>
-            <Link to="/LogOut" className="nav">
-              Logout
-            </Link>
-          </span>
-        ) : (
-          <span>
-            <Link to="/SignUp" className="nav">
-              Sign Up
-            </Link>
-            <Link to="/Login" className="nav">
-              Login
-            </Link>
-          </span>
+        {this.props.loggedIn && (
+          <Link to="/Post-ADV" className="nav">
+            Post-Adv
+          </Link>
+        )}
+        {this.props.loggedIn && (
+          <Link to="/Logout" className="nav">
+            Logout
+          </Link>
+        )}
+        {!this.props.loggedIn && (
+          <Link to="/SignUp" className="nav">
+            Sign Up
+          </Link>
+        )}
+        {!this.props.loggedIn && (
+          <Link to="/Login" className="nav">
+            Login
+          </Link>
         )}
         <Link to="/cart" className="cart">
           ID: {this.props.username}
@@ -42,12 +42,12 @@ class UnConnectedNavbar extends Component {
     );
   };
 }
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return {
     items: state.items,
     username: state.username,
     loggedIn: state.loggedIn,
-    cart: state.cart
+    cart: state.cart,
   };
 };
 let Navbar = connect(mapStateToProps)(UnConnectedNavbar);

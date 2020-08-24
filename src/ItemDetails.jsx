@@ -10,21 +10,17 @@ class UnConnectedItemDetails extends Component {
 
   getItem = async () => {
     let id = this.props.id;
-    console.log(this.props.id);
     let data = new FormData();
     data.append("id", id);
     let response = await fetch("/findItem", { method: "POST", body: data });
     let body = await response.text();
-    console.log(body);
     body = JSON.parse(body);
-    console.log(body);
-
     this.setState({ item: body });
   };
   componentDidMount() {
     this.getItem();
   }
-  deleteAd = async id => {
+  deleteAd = async (id) => {
     let data = new FormData();
     data.append("id", id);
     fetch("/deleteAd", { method: "POST", body: data });
@@ -34,8 +30,12 @@ class UnConnectedItemDetails extends Component {
     this.props.dispatch({ type: "render-items", items: body });
     this.getItem();
   };
-  addToCart = item => {
-    this.props.dispatch({ type: "addToCart", item: item });
+  addToCart = (item) => {
+    if (this.props.cart && this.props.cart.includes(item)) {
+      return alert("You have already added this item to your cart!");
+    } else {
+      this.props.dispatch({ type: "addToCart", item: item });
+    }
   };
 
   render = () => {
@@ -74,10 +74,11 @@ class UnConnectedItemDetails extends Component {
     );
   };
 }
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return {
     username: state.username,
-    loggedIn: state.loggedIn
+    loggedIn: state.loggedIn,
+    cart: state.cart,
   };
 };
 let ItemDetails = connect(mapStateToProps)(UnConnectedItemDetails);

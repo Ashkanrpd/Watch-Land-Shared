@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, BrowserRouter, Redirect, Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class UnConnectedSignUp extends Component {
@@ -8,17 +8,16 @@ class UnConnectedSignUp extends Component {
     this.state = {
       usernameSignUpInput: "",
       passwordSignUpInput: "",
-      signedUp: false
+      signedUp: false,
     };
   }
-  usernameSignUpChange = evt => {
+  usernameSignUpChange = (evt) => {
     this.setState({ usernameSignUpInput: evt.target.value });
   };
-  passwordSignUpChange = evt => {
+  passwordSignUpChange = (evt) => {
     this.setState({ passwordSignUpInput: evt.target.value });
   };
-  signUpHandler = async evt => {
-    console.log(this.state.usernameSignUpInput);
+  signUpHandler = async (evt) => {
     evt.preventDefault();
     let data = new FormData();
     data.append("username", this.state.usernameSignUpInput);
@@ -27,7 +26,6 @@ class UnConnectedSignUp extends Component {
     let body = await response.text();
     body = JSON.parse(body);
     if (body.success) {
-      console.log("Signed Up Successfully");
       alert("Signed up Successfully");
       this.setState({ signedUp: true });
       return;
@@ -36,7 +34,7 @@ class UnConnectedSignUp extends Component {
     this.setState({
       usernameSignUpInput: "",
       passwordSignUpInput: "",
-      signedUp: false
+      signedUp: false,
     });
   };
   render = () => {
@@ -55,7 +53,6 @@ class UnConnectedSignUp extends Component {
             minLength={4}
             maxLength={8}
             placeholder={"4-8 letters"}
-            // pattern={"[A-Za-z]"}
             title={"4-8 letters"}
           ></input>
           <div>Password:</div>
@@ -72,7 +69,6 @@ class UnConnectedSignUp extends Component {
           <Link to={"/Store"}>
             <button className="register-button">Cancel</button>
           </Link>
-
           <div className="register-link">
             Already have an account? <Link to={"/Login"}>Sign in</Link>
           </div>
@@ -82,7 +78,7 @@ class UnConnectedSignUp extends Component {
   };
 }
 
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return {};
 };
 let SignUp = connect(mapStateToProps)(UnConnectedSignUp);

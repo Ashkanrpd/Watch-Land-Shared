@@ -27,11 +27,9 @@ router.post("/", upload.single("img"), async (req, res) => {
       imagePath: imagePath,
       gender: gender,
     });
-    console.log("Post successfull");
     res.send(JSON.stringify({ success: true }));
     return;
   }
-  console.log("Post failed");
   res.send(JSON.stringify({ success: false }));
 });
 

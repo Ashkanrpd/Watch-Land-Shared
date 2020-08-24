@@ -9,24 +9,18 @@ class UnConnectedCheckoutForm extends React.Component {
     super(props);
     this.state = { redirect: false };
   }
-  handleSubmit = ev => {
+  handleSubmit = (ev) => {
     ev.preventDefault();
-
     const cardElement = this.props.elements.getElement("card");
-
-    this.props.stripe
-      .createPaymentMethod({
-        type: "card",
-        card: cardElement,
-        billing_details: { name: "Jenny Rosen" }
-      })
-      .then(({ paymentMethod }) => {
-        console.log("Received Stripe PaymentMethod:", paymentMethod);
-      });
+    this.props.stripe.createPaymentMethod({
+      type: "card",
+      card: cardElement,
+      billing_details: { name: "Jenny Rosen" },
+    });
   };
-  paymentFunc = async evt => {
+  paymentFunc = async (evt) => {
     evt.preventDefault();
-    this.props.cart.map(async item => {
+    this.props.cart.map(async (item) => {
       let data = new FormData();
       data.append("id", item._id);
       await fetch("/deleteAd", { method: "POST", body: data });
@@ -46,17 +40,17 @@ class UnConnectedCheckoutForm extends React.Component {
           <button onClick={this.paymentFunc} className="btn">
             Confirm order
           </button>
-          <Link to={"/Store"}>
-            <button className="btn">Cancel</button>
+          <Link to={"/Store"} className="btn">
+            Cancel
           </Link>
         </form>
       </div>
     );
   }
 }
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return {
-    cart: state.cart
+    cart: state.cart,
   };
 };
 let CheckoutForm = connect(mapStateToProps)(UnConnectedCheckoutForm);

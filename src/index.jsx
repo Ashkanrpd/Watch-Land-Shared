@@ -3,10 +3,9 @@ import React from "react";
 import { Provider } from "react-redux";
 import "./main.css";
 import App from "./App.jsx";
-
 import store from "./Store.js";
-import reloadMagic from "./reload-magic-client.js"; // automatic reload
-reloadMagic(); // automatic reload
+import reloadMagic from "./reload-magic-client.js";
+reloadMagic();
 
 ReactDOM.render(
   <Provider store={store}>

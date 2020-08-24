@@ -11,9 +11,7 @@ router.post("/", upload.none(), async (req, res) => {
   let username = sessions[sessionId];
   if (username) {
     let id = req.body.id;
-    console.log(id);
-    await getDb("items").remove({ _id: ObjectId(id) });
-    console.log("item removed successfully");
+    await getDb("items").deleteOne({ _id: ObjectId(id) });
     res.send(JSON.stringify({ success: true }));
     return;
   }

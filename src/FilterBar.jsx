@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Slider from "@material-ui/core/slider";
-import Items from "./items.jsx";
+
 const StyledSlider = withStyles({
   root: {
     color: "white",
@@ -22,6 +21,7 @@ const StyledSlider = withStyles({
     },
   },
 })(Slider);
+
 class UnConnectedFilterBar extends Component {
   constructor(props) {
     super(props);

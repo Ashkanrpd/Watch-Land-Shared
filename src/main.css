@@ -3,27 +3,7 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
-.overlay {
-  z-index: 50;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.popup {
-  z-index: 100;
-  position: fixed;
-  top: 200px;
-  left: 200px;
-  right: 200px;
-  background-color: rgb(12, 2, 2);
-}
-
-/* Everything for Home  */
-
+/* Home  */
 .home-container {
   height: 100vh;
   background-image: url("/Titan.jpg");
@@ -45,6 +25,9 @@ body {
   animation-fill-mode: forwards;
   text-rendering: geometricPrecision;
 }
+.home > a {
+  float: left;
+}
 
 @keyframes fadeIn {
   from {
@@ -54,47 +37,32 @@ body {
     opacity: 1;
   }
 }
+/* NAVRBAR */
 
-/* Everything for Menu bar */
-
-.menu {
+.navbar {
+  display: flex;
   position: sticky;
-  position: -webkit-sticky;
   top: 0;
-  background-color: #fff;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.nav {
-  margin-right: 30px;
-  text-decoration: none;
-  font-weight: 400;
-  color: black;
-  padding: 10px;
-  font-size: 20px;
-}
-.logo {
-  margin-left: 2%;
-  margin-right: 20%;
+  flex-wrap: wrap;
+  height: 100px;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .cart {
   position: relative;
-  margin-left: 20%;
   text-decoration: none;
   color: black;
 }
-
 .cart > span {
   position: absolute;
-  top: -2px;
-  right: -35px;
+  top: -7px;
+  right: -40px;
   background: black;
-  color: #fff;
+  color: rgb(243, 247, 3);
   border-radius: 50%;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   font-size: 12px;
   display: flex;
   align-items: center;
@@ -107,6 +75,14 @@ body {
   border: none;
   top: -5px;
 }
+.nav {
+  margin-right: 30px;
+  text-decoration: none;
+  font-weight: 400;
+  color: black;
+  padding: 10px;
+  font-size: 20px;
+}
 
 /* Everything for items  */
 .items {
@@ -117,7 +93,6 @@ body {
   grid-template-columns: 40% 40%;
   justify-content: center;
   align-items: inherit;
-  margin-left: 5%;
   text-align: center;
 }
 
@@ -146,12 +121,11 @@ body {
 /* Everything for Filter bar */
 .filter-bar {
   position: sticky;
-  position: -webkit-sticky;
   top: 0;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  height: 100px;
+  padding: 10px;
   background-color: black;
   color: #fff;
   border-radius: 5px;
@@ -412,9 +386,17 @@ body {
   text-decoration: none;
   width: 100%;
   max-width: 150px;
+  text-align: center;
 }
 .title {
   font-weight: bolder;
   margin-bottom: 5px;
   margin-top: 5px;
+}
+
+.center-msg {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
 }

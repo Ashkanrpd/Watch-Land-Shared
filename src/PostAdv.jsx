@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Route, BrowserRouter, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Items from "./items.jsx";
 import Navbar from "./Navbar.jsx";
 
 class UnConnectedPostAdv extends Component {

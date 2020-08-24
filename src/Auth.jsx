@@ -1,14 +1,6 @@
 import React, { Component } from "react";
-import {
-  Route,
-  BrowserRouter,
-  push,
-  browserHistory,
-  Redirect,
-  Link,
-} from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Store from "./Store.js";
 
 class UnAuth extends Component {
   constructor(props) {
@@ -33,7 +25,6 @@ class UnAuth extends Component {
     let body = await response.text();
     body = JSON.parse(body);
     if (body.success) {
-      console.log("Logged in Successfully");
       this.props.dispatch({
         type: "logged-in-username",
         username: this.state.usernameLoginInput,
@@ -88,37 +79,3 @@ let mapStateToProps = (state) => {
 };
 let Auth = connect(mapStateToProps)(UnAuth);
 export default Auth;
-
-{
-  /* <div>
-<h1 className="register-title">Welcome</h1>
-<form onSubmit={this.signUpHandler} className={"register"}>
-  <h3>Sign Up:</h3>
-  <div>Username:</div>
-  <input
-    type="text"
-    onChange={this.usernameSignUpChange}
-    className={"register-input"}
-  ></input>
-  <div>Password:</div>
-  <input
-    type="text"
-    onChange={this.passwordSignUpChange}
-    className={"register-input"}
-  ></input>
-  <input type="submit" className="register-button"></input>
-
-  <Link to={"/Store"}>
-    <button className="register-button">Cancel</button>
-  </Link>
-
-  <div className="register-link">
-    Already have an account? <Link to={"/Login"}>Sign in</Link>
-  </div>
-</form>
-</div>
-);
-};
-}
- */
-}

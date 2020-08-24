@@ -11,17 +11,14 @@ router.post("/", upload.none(), async (req, res) => {
   let pwd = req.body.password;
   await getDb("users").findOne({ username: name }, (err, user) => {
     if (err) {
-      console.log("login failed", err);
       res.send(JSON.stringify({ success: false }));
       return;
     }
     if (user === null) {
-      console.log(" Username not found!");
       res.send(JSON.stringify({ success: false }));
       return;
     }
     if (user.password === sha1(pwd)) {
-      console.log("Login successfull");
       let sessionId = "" + Math.floor(Math.random() * 1000000);
       sessions[sessionId] = name;
       res.cookie("sid", sessionId);

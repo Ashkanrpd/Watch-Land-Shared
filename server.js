@@ -36,7 +36,6 @@ app.use("/newAd", newAd);
 app.use("/deleteAd", deleteAd);
 app.all("/*", (req, res) => {
   // needed for react router
-  console.log("/*");
   res.sendFile(__dirname + "/build/index.html");
 });
 

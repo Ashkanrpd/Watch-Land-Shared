@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Route, BrowserRouter } from "react-router-dom";
 import Items from "./items.jsx";
 import Navbar from "./Navbar.jsx";
 import FilterBar from "./FilterBar.jsx";
@@ -15,7 +13,7 @@ class UnConnectedStore extends Component {
       searchInput: "",
       yearInput: "",
       priceInput: [0, 100000],
-      genderInput: undefined
+      genderInput: undefined,
     };
   }
   changeMyAdsInput = () => {
@@ -24,16 +22,16 @@ class UnConnectedStore extends Component {
   chosenBrandInput = (_, input) => {
     this.setState({ chosenBrand: input });
   };
-  changeSearchInput = input => {
+  changeSearchInput = (input) => {
     this.setState({ searchInput: input.target.value });
   };
-  changeYearInput = input => {
+  changeYearInput = (input) => {
     this.setState({ yearInput: input.target.value });
   };
   changePriceInput = (_, input) => {
     this.setState({ priceInput: input });
   };
-  changeGenderInput = input => {
+  changeGenderInput = (input) => {
     this.setState({ genderInput: input.target.value });
   };
   changeResetInput = () => {
@@ -43,7 +41,7 @@ class UnConnectedStore extends Component {
       searchInput: "",
       yearInput: "",
       priceInput: [0, 100000],
-      genderInput: undefined
+      genderInput: undefined,
     });
   };
 
@@ -78,11 +76,11 @@ class UnConnectedStore extends Component {
     );
   };
 }
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return {
     items: state.items,
     username: state.username,
-    loggedIn: state.loggedIn
+    loggedIn: state.loggedIn,
   };
 };
 let Store = connect(mapStateToProps)(UnConnectedStore);

@@ -14,7 +14,6 @@ const initMongo = async (url) => {
 };
 const getDb = (collectionName) => {
   if (!dbo) {
-    console.log("DBO not instantated, call init please!");
     return;
   }
   return dbo.collection(collectionName);

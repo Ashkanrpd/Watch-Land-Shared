@@ -11,7 +11,6 @@ router.post("/", upload.none(), async (req, res) => {
   try {
     let user = await getDb("users").findOne({ username: name });
     if (user) {
-      console.log("/SignUp Error - Username is already taken!");
       res.send(JSON.stringify({ success: false }));
       return;
     }
@@ -19,11 +18,9 @@ router.post("/", upload.none(), async (req, res) => {
       username: name,
       password: sha1(pwd),
     });
-    console.log("/SignUp - Signed Up Successfully!");
     res.send(JSON.stringify({ success: true }));
     return;
   } catch (err) {
-    console.log("/SignUp Error", err);
     res.send(JSON.stringify({ success: false }));
   }
 });

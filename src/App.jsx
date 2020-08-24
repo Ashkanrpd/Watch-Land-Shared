@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route, BrowserRouter } from "react-router-dom";
 import { connect } from "react-redux";
-// import { StripeProvider } from "react-stripe-elements";
 import Home from "./Home.jsx";
 import SignUp from "./SignUp.jsx";
 import Auth from "./Auth.jsx";
@@ -20,13 +19,13 @@ class UnConnectedApp extends Component {
     if (parsed.success)
       this.props.dispatch({
         type: "logged-in-username",
-        username: parsed.username
+        username: parsed.username,
       });
   };
   componentDidMount() {
     this.activeSessionCheck();
   }
-  renderItemDetails = routerData => {
+  renderItemDetails = (routerData) => {
     const itemId = routerData.match.params.itemId;
     if (itemId === undefined) return <div>No item found</div>;
     return <ItemDetails id={itemId} />;
@@ -38,7 +37,7 @@ class UnConnectedApp extends Component {
         <Route exact={true} path="/Store" component={Store} />
         <Route exact={true} path="/SignUp" component={SignUp} />
         <Route exact={true} path="/Login" component={Auth} />
-        <Route exact={true} path="/LogOut" component={LogOut} />
+        <Route exact={true} path="/Logout" component={LogOut} />
         <Route exact={true} path="/Post-ADV" component={PostAdv} />
         <Route
           exact={true}
